@@ -1,1 +1,5 @@
-
+[Bb]in/
+[Oo]bj/
+*.suo
+*.user
+*.ncrunch*
