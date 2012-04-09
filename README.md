@@ -17,28 +17,25 @@ Why is this necessary?
 I would like to borrow the scenario from Eric Lippert's blog post "[Why IL?](https://blogs.msdn.com/b/ericlippert/archive/2011/11/18/why-il.aspx)"
 to illustrate.
 
-Suppose you have a two programming languages, Quux and Baz, and you would like
-both of them to target three different CPU architectures: x86, x64 and ia64.
-
-One possible way to do this would be to build one code generator per combination
-of language and CPU architecture.  If you were to go this route, you would end
-up with six code generators in total: Quxu-to-x86, Baz-to-x86, Quux-to-x64, and
-so on.  If you wanted to create a new language, Farkle, you would have to add
-three more code generators.  In general you would have n * m code generators,
-where n and m are the number of languages and target platforms, respectively.
-
-Another possible way, would be to compile each language into some sort of shared
-"intermediary" language which would then, in turn, be compiled into the machine
-code for the specific architecture desired.  In this case, you would need n + m
-code generators, n to go from the languages into the shared language, and m to
-go into the byte code.
-
-This is the model followed by the Java VM languages (Java Bytecode), the .NET
-languages (IL), and even older languages like VB6.  The key to this efficiency
-is that the intermediary language must be *shared* between the other languages.
-It is not enough, for example, for C# to have its own internal "intermediary"
-language, because no other language would be unable to utillize the machine code
-generators that C# had.
+> Suppose you have n languages: C#, VB, F#, JScript .NET, and so on. Suppose you
+> have m different runtime environments: Windows machines running on x86 or x64,
+> XBOX 360, phones, Silverlight running on the Mac... and suppose you go with
+> the one-compiler strategy for each. How many compiler back-end code generators
+> do you end up writing? For each language you need a code generator for each
+> target environment, so you end up writing n x m code generators.
+>
+> Suppose instead you have every language generate code into IL, and then you
+> have one jitter per target environment. How many code generators do you end up
+> writing?  One per language to go to IL, and one per environment to go from IL
+> to the target machine code. That's only n + m, which is far less than n x m
+> for reasonably-sized values of n and m.
+>
+> ...
+>
+> The cost savings go the other way too; if you want to support a new chipset
+> then you just write yourself a jitter for that chipset and all the languages
+> that compile to IL suddenly start working; you only had to write *one* jitter
+> to get n languages on your new platform.
 
 This scenario is analagous to the situation today with the landscape of version
 control systems.  Today, each system has a certain level of support for
