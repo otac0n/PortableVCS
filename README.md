@@ -61,9 +61,9 @@ interested in contributing to the project:
    for *existing* features of *existing* VCS storage formats.
 
  * Contributors are encouraged to branch the the specification to include
-   support for upcoming features of *existing* VCS storage formats.
+   support for *upcoming* features of *existing* VCS storage formats.
 
- * Contributors are discouraged to include purely theoretical features.
+ * Contributors are discouraged from include purely theoretical features.
 
 In general, if a feature has not been released by a version control system, it
 is considered theoretical.  If a new feature shows up in a branch or fork of
