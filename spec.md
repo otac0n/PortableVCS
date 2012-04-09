@@ -59,7 +59,8 @@ folder descriptors for the elements contained by the folder. The descriptors
 SHOULD be sorted in some deterministic fashion, so that two folders with
 logically equivalent contents may have exactly the same contents, and therefore
 share a file on disk.  It is RECOMMENDED that the descriptors be sorted first
-lexicographically, first by the 
+by the type of object (with folders coming first followed by files), then
+lexicographically by the names of the elements contained by the folder.
 
 #### Descriptor format ####
 
