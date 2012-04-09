@@ -76,11 +76,23 @@
             get { return this.name; }
         }
 
+        /// <summary>
+        /// Determines whether two specified instances of <see cref="Descriptor"/> are equal.
+        /// </summary>
+        /// <param name="left">A <see cref="Descriptor"/>.</param>
+        /// <param name="right">A <see cref="Descriptor"/>.</param>
+        /// <returns>true if <paramref name="left"/> and <paramref name="right"/> represent the same descriptor; otherwise, false.</returns>
         public static bool operator ==(Descriptor left, Descriptor right)
         {
             return object.Equals(left, right);
         }
 
+        /// <summary>
+        /// Determines whether two specified instances of <see cref="Descriptor"/> are not equal.
+        /// </summary>
+        /// <param name="left">A <see cref="Descriptor"/>.</param>
+        /// <param name="right">A <see cref="Descriptor"/>.</param>
+        /// <returns>true if <paramref name="left"/> and <paramref name="right"/> do not represent the same descriptor; otherwise, false.</returns>
         public static bool operator !=(Descriptor left, Descriptor right)
         {
             return !object.Equals(left, right);
@@ -135,6 +147,11 @@
             stream.WriteByte(0);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="Object"/> is equal to the current <see cref="Descriptor"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="Object"/> to compare with the current <see cref="Descriptor"/>.</param>
+        /// <returns>true if the specified <see cref="Object"/> is equal to the current <see cref="Descriptor"/>; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             var other = obj as Descriptor;
@@ -149,6 +166,10 @@
                 this.name == other.name;
         }
 
+        /// <summary>
+        /// Serves as a hash function for a particular type.
+        /// </summary>
+        /// <returns>A hash code for the current <see cref="Descriptor"/>.</returns>
         public override int GetHashCode()
         {
             int hash = 0x51ED270B;
