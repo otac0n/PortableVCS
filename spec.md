@@ -55,7 +55,7 @@ Folders are special files that are nevertheless stored according to the general
 format listed above, in the same way as a file object.
 
 The content of a folder object is the concatenation of all of the file and
-folder descriptors for the elements contained by the file. The descriptors
+folder descriptors for the elements contained by the folder. The descriptors
 SHOULD be sorted in some deterministic fashion, so that two folders with
 logically equivalent contents may have exactly the same contents, and therefore
 share a file on disk.  It is RECOMMENDED that the descriptors be sorted first
