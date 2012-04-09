@@ -48,3 +48,25 @@ from Mercurial into Git, or from Veracity to CVS.
 
 The Portable VCS Format aims to be the "glue" that allows for free conversion
 between all version control systems.
+
+Guidlines for Contributing
+--------------------------
+
+The design of the Portable VCS Format is heavily influenced by existing systems.
+Any VCS that has a stake in the format has the possibility of influencing the
+design.  To remain pragmatic, these guidelines are provided for anyone
+interested in contributing to the project:
+
+ * Contributors are encouraged to expand the specification to include support
+   for *existing* features of *existing* VCS storage formats.
+
+ * Contributors are encouraged to branch the the specification to include
+   support for upcoming features of *existing* VCS storage formats.
+
+ * Contributors are discouraged to include purely theoretical features.
+
+In general, if a feature has not been released by a version control system, it
+is considered theoretical.  If a new feature shows up in a branch or fork of
+a VCS, the corresponding support for it should show up in a branch of Portable
+VCS.  When the aformentioned branch or fork is merged into the VCS or released
+in its own right, then the corresponding branch should be merged in.
