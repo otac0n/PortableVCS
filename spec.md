@@ -40,6 +40,9 @@ without the `/object` folder) will be refered to as the "object name" and the
 path of the object on the host (including the extension and relative path) will
 be refered to as the "object path"
 
+It is RECOMMENDED that the object name of an object be the SHA-1 hash of the
+object.
+
 ### File object format ###
 
 All files in a repository are considered binary files and are stored as-is
@@ -55,29 +58,35 @@ The content of a folder object is the concatenation of all of the file and
 folder descriptors for the elements contained by the file. The descriptors
 SHOULD be sorted in some deterministic fashion, so that two folders with
 logically equivalent contents may have exactly the same contents, and therefore
-share a file on disk.
+share a file on disk.  It is RECOMMENDED that the descriptors be sorted first
+lexicographically, first by the 
 
 #### Descriptor format ####
 
 A descriptor follows the following format:
 
-    <Type><\0><ObjectNameLength><\0><ObjectName><\0><NameLength><\0><Name><\0>
+    <ObjectNameLength><\0><ObjectName><\0><Type><\0><NameLength><\0><Name><\0>
 
 The fields above (represented by text surrounded by angle brackets) are
 generated as follows:
 
  * `<\0>` represents a single byte with a zero value (a null byte).
- * `<Type>` is a single byte with either the ASCII value 't' (for "tree"), if
-   the descriptor represents a folder; or the ASCII value 'b' (for "blob"), if
-   the descriptor represents a file.
  * `<ObjectNameLength>` is the length in bytes, of the `<ObjectName>` field. The
    value is represented in ASCII hexadecimal digits. The hexadecimal digits 'a'
    through 'f' SHOULD be represented in lower case.
  * `<ObjectName>` is object name of the object referenced. The name is text and
    therefore MUST be encoded using the UTF-8N encoding. The value MUST be valid
    UTF-8N.
+ * `<Type>` is a single byte with either the ASCII value 't' (for "tree"), if
+   the descriptor represents a folder; or the ASCII value 'b' (for "blob"), if
+   the descriptor represents a file.
  * `<NameLength>` is the length in bytes, of the `<Name>` field. The value is
    represented in ASCII hexadecimal digits. The hexadecimal digits 'a' through
    'f' SHOULD be represented in lower case.
  * `<Name>` is name of the object referenced. The name is text and therefore
    MUST be encoded using the UTF-8N encoding. The value MUST be valid UTF-8N.
+
+Be aware that no guarantee is made that either the `<ObjectName>` field or the
+`<Name>` field will be free of null characters.  This means that an
+implementation SHOULD NOT simply use the null characters as a delimeter, unless
+care is taken to handle the cases where the field contains a null character.
